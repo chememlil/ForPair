@@ -88,11 +88,9 @@ input {
 .login-image {
   width: 60%;
   height: 100%;
-}
-
-.login-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  background-image: url('https://moringaschool.com/wp-content/uploads/2022/02/Image2-768x512.jpg');
+  background-size: cover;
+  background-position: center;
   border-radius: 8px;
 }
+

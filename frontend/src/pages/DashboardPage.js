@@ -5,7 +5,7 @@ import '../styles/DashboardPage.css';
 function DashboardPage() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [userName, setUserName] = useState(''); // Default is empty
-  const [pair, setPair] = useState('');
+  const [pair, setPair] = useState(''); // To store the pairing result
   const navigate = useNavigate();
 
   // Update the current time every second
@@ -27,12 +27,13 @@ function DashboardPage() {
 
   const handlePair = async () => {
     try {
+      // Fetch random pairs from the backend
       const response = await fetch('http://127.0.0.1:5000/api/pair');
       if (response.ok) {
         const data = await response.json();
-        setPair(data.pair || 'No pair available');
+        setPair(data.pair || 'No pair available'); // Update the pair state
       } else {
-        alert('Failed to pair students.');
+        alert('Failed to fetch pairings.');
       }
     } catch (error) {
       console.error('Error while pairing:', error);
