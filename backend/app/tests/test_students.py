@@ -28,6 +28,17 @@ def test_get_students(client):
 
 def test_delete_student(client):
     client.post('/students/', json={"name": "John Doe"})
+
+    # Refactor delete logic to use `Session.get()`
+    with client.application.app_context():
+        student = db.session.get(Student, 1)
+        assert student is not None, "Student should exist before deletion"
+
     response = client.delete('/students/1')
     assert response.status_code == 200
     assert response.json['message'] == "Student deleted successfully"
+
+    # Confirm the student no longer exists
+    with client.application.app_context():
+        student = db.session.get(Student, 1)
+        assert student is None, "Student should not exist after deletion"

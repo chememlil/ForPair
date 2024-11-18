@@ -1,6 +1,8 @@
+from os import abort
 from flask import Blueprint, request, jsonify
 from app.models import Student
 from app import db
+
 
 bp = Blueprint('students', __name__)
 
@@ -24,7 +26,9 @@ def add_student():
 
 @bp.route('/<int:id>', methods=['DELETE'])
 def delete_student(id):
-    student = Student.query.get_or_404(id)
+    student = db.session.get(Student, id)  # Use Session.get()
+    if not student:
+        abort(404, description="Student not found")
     db.session.delete(student)
     db.session.commit()
     return jsonify({"message": "Student deleted successfully"}), 200
