@@ -4,34 +4,33 @@ import '../styles/DashboardPage.css';
 
 function DashboardPage() {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [userName, setUserName] = useState(''); // Default is empty
-  const [pair, setPair] = useState(''); // To store the pairing result
+  const [userName, setUserName] = useState('');
+  const [pairs, setPairs] = useState([]); // Store fetched pairs
   const navigate = useNavigate();
 
-  // Update the current time every second
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
-    return () => clearInterval(timer); // Cleanup interval
+    return () => clearInterval(timer);
   }, []);
 
-  // Fetch the username from localStorage on mount
   useEffect(() => {
-    const loggedInUser = localStorage.getItem('username') || 'Guest'; // Replace with your global state logic if necessary
+    const loggedInUser = localStorage.getItem('username') || 'Guest';
     setUserName(loggedInUser);
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('username'); // Clear the username
+    localStorage.removeItem('username');
     navigate('/');
   };
 
   const handlePair = async () => {
     try {
-      // Fetch random pairs from the backend
-      const response = await fetch('http://127.0.0.1:5000/api/pair');
+      const response = await fetch('http://127.0.0.1:5000/api/pair', {
+        method: 'POST',
+      });
       if (response.ok) {
         const data = await response.json();
-        setPair(data.pair || 'No pair available'); // Update the pair state
+        setPairs(data.pairs); // Update the pair state
       } else {
         alert('Failed to fetch pairings.');
       }
@@ -39,6 +38,7 @@ function DashboardPage() {
       console.error('Error while pairing:', error);
     }
   };
+  
 
   return (
     <div className="dashboard-container">
@@ -60,7 +60,20 @@ function DashboardPage() {
         <button className="pair-button" onClick={handlePair}>
           Tap To Pair
         </button>
-        <p>Paired with: <strong>{pair || 'No pair yet'}</strong></p>
+        {pairs.length > 0 ? (
+          <div className="pair-results">
+            <h3>Pair Results:</h3>
+            <ul>
+              {pairs.map((pair, index) => (
+                <li key={index}>
+                  {pair.student1} & {pair.student2}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p>No pair yet</p>
+        )}
       </div>
 
       <div className="dashboard-footer">
