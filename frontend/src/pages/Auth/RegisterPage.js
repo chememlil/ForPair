@@ -15,20 +15,20 @@ function RegisterPage() {
     e.preventDefault();
     setErrorMessage('');
     setSuccessMessage('');
-
+  
     if (password !== confirmPassword) {
       setErrorMessage('Passwords do not match');
       return;
     }
-
+  
     try {
-      // Example API request logic
+      // Send email along with other fields in the request body
       const response = await fetch('http://127.0.0.1:5000/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ username, email, password }),  // Make sure email is included
       });
-
+  
       if (response.status === 201) {
         setSuccessMessage('You have now registered successfully!');
         setTimeout(() => {
@@ -42,6 +42,7 @@ function RegisterPage() {
       setErrorMessage('An error occurred. Please try again.');
     }
   };
+  
 
   return (
     <div className="register-container">
