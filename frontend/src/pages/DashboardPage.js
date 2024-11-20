@@ -35,25 +35,30 @@ function DashboardPage() {
       return;
     }
 
-const shuffledStudents = [...students];
-const newPairs = [];
+    const shuffledStudents = [...students];
+    const newPairs = [];
 
-// Ensure the number of students is even (if odd, one student is left out)
-if (shuffledStudents.length % 2 !== 0) {
-  shuffledStudents.push({ id: 'extra', name: 'Leftover' });
-}
+    // Ensure the number of students is even (if odd, one student is left out)
+    if (shuffledStudents.length % 2 !== 0) {
+      shuffledStudents.push({ id: 'extra', name: 'Leftover' });
+    }
 
-// Shuffle the students
-shuffledStudents.sort(() => Math.random() - 0.5);
+    // Shuffle the students
+    shuffledStudents.sort(() => Math.random() - 0.5);
 
-// Create pairs
-while (shuffledStudents.length > 1) {
-  const student1 = shuffledStudents.pop();
-  const student2 = shuffledStudents.pop();
-  newPairs.push({ student1: student1.name, student2: student2.name });
-}
+    // Create pairs
+    while (shuffledStudents.length > 1) {
+      const student1 = shuffledStudents.pop();
+      const student2 = shuffledStudents.pop();
+      newPairs.push({ student1: student1.name, student2: student2.name });
+    }
 
-setPairs(newPairs); // Update the pairs state
+    // Save the pairs to localStorage for history
+    const currentHistory = JSON.parse(localStorage.getItem('pairingHistory')) || [];
+    const updatedHistory = [...currentHistory, ...newPairs];
+    localStorage.setItem('pairingHistory', JSON.stringify(updatedHistory));
+
+    setPairs(newPairs); // Update the pairs state
   };
 
   return (
@@ -67,42 +72,41 @@ setPairs(newPairs); // Update the pairs state
         </button>
       </div>
 
-  <div className="dashboard-time">
-    <h1>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</h1>
-    <p>{currentTime.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</p>
-  </div>
-
-  <div className="dashboard-action">
-    <button className="pair-button" onClick={handlePair}>
-      Tap To Pair
-    </button>
-    {pairs.length > 0 ? (
-      <div className="pair-results">
-        <h3>Pair Results:</h3>
-        <ul>
-          {pairs.map((pair, index) => (
-            <li key={index}>
-              {pair.student1} & {pair.student2}
-            </li>
-          ))}
-        </ul>
+      <div className="dashboard-time">
+        <h1>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</h1>
+        <p>{currentTime.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</p>
       </div>
-    ) : (
-      <p>No pair yet</p>
-    )}
-  </div>
 
-  <div className="dashboard-footer">
-    <button className="history-button" onClick={() => navigate('/history')}>
-      History Page
-    </button>
-    <button className="students-button" onClick={() => navigate('/students')}>
-      Students Page
-    </button>
-  </div>
-</div>
+      <div className="dashboard-action">
+        <button className="pair-button" onClick={handlePair}>
+          Tap To Pair
+        </button>
+        {pairs.length > 0 ? (
+          <div className="pair-results">
+            <h3>Pair Results:</h3>
+            <ul>
+              {pairs.map((pair, index) => (
+                <li key={index}>
+                  {pair.student1} & {pair.student2}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p>No pair yet</p>
+        )}
+      </div>
+
+      <div className="dashboard-footer">
+        <button className="history-button" onClick={() => navigate('/history')}>
+          History Page
+        </button>
+        <button className="students-button" onClick={() => navigate('/students')}>
+          Students Page
+        </button>
+      </div>
+    </div>
   );
 }
 
 export default DashboardPage;
-
