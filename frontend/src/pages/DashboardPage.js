@@ -25,7 +25,7 @@ function DashboardPage() {
 
   const handlePair = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/pair', {
+      const response = await fetch('http://127.0.0.1:5000/api/pairings/', {
         method: 'POST',
       });
       if (response.ok) {

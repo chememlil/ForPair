@@ -22,6 +22,6 @@ def create_app():
     from .routes import auth, students, pairings
     app.register_blueprint(auth.bp, url_prefix="/auth")
     app.register_blueprint(students.bp, url_prefix="/students")
-    app.register_blueprint(pairings.bp, url_prefix="/pairings")
+    app.register_blueprint(pairings.bp, url_prefix="/api")
 
     return app

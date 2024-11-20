@@ -6,7 +6,7 @@ import datetime
 
 bp = Blueprint('pairings', __name__)
 
-@bp.route('/', methods=['POST'])
+@bp.route('/pairings', methods=['POST'])
 def pair_students():
     students = Student.query.all()
     if len(students) < 2:
