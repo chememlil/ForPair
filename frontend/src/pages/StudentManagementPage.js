@@ -33,21 +33,22 @@ function StudentManagementPage() {
       <h1>Student Management</h1>
       <AddStudent onAddStudent={addStudent} />
       <StudentList students={students} onDeleteStudent={deleteStudent} />
-      <button
-        onClick={() => navigate('/dashboard')}
-        style={{
-          marginTop: '20px',
-          padding: '10px 20px',
-          backgroundColor: '#007bff',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer',
-        }}
-      >
-        Go to Dashboard
-      </button>
-    </div>
+
+  <button
+    onClick={() => navigate('/dashboard')}
+    style={{
+      marginTop: '20px',
+      padding: '10px 20px',
+      backgroundColor: '#007bff',
+      color: 'white',
+      border: 'none',
+      borderRadius: '4px',
+      cursor: 'pointer',
+    }}
+  >
+    Go to Dashboard
+  </button>
+</div>
   );
 }
 
