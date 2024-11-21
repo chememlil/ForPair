@@ -1,9 +1,9 @@
 # MoringaPair
 
-MoringaPair is a student pairing system designed to eliminate the cumbersome and laborious process of manually pairing students based on factors like performance or preferences. The current challenge is that Technical Mentors (TMs) often have to manually pair students, keep track of these pairs, and ensure that no duplications occur. MoringaPair aims to simplify and automate this process.
+MoringaPair is a student pairing system designed to eliminate the cumbersome and laborious process of manually pairing students based on performance or preferences. The current challenge is that Technical Mentors (TMs) often have to manually pair students, keep track of these pairs, and ensure that no duplications occur. MoringaPair aims to simplify and automate this process.
 
 ## 🚀 Problem Statement
-Pairing students manually and tracking the pairs each week is time-consuming and inefficient. TMs currently rely on intuition, performance data, and other factors to make pairings. Keeping track of these pairs without duplication is a challenge, especially when pairing students on a weekly basis.
+Pairing students manually and tracking the pairs each week is time-consuming and inefficient. TMs rely on intuition, performance data, and other factors to pair. Keeping track of these pairs without duplication is a challenge, especially when pairing students weekly.
 
 ## 💡 Solution
 MoringaPair provides an automated system that:
@@ -88,7 +88,7 @@ http://localhost:3000
 ## 🧑‍💻 Usage
 - **Log in** as a Technical Mentor (TM) or a student.
 - **Create an account** if you don't have one.
-- **Pair students** automatically and track pairings on a weekly basis.
+- **Pair students** automatically and track pairings weekly.
 - **View past pairings** using the data visualization tools.
 
 ## 📊 Data Visualization
@@ -109,7 +109,7 @@ npm test
 ```
 
 ## Live Demo
-Check out the live demo [here](https://for-pair-jealcs-projects.vercel.app/).
+Check out the live demo [here](https://moringa-pair-ebon.vercel.app/).
 
 ## 🤝 Contributing
 We welcome contributions! Please follow the steps below if you'd like to contribute to MoringaPair:
