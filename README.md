@@ -108,6 +108,9 @@ python -m unittest discover backend/tests
 npm test
 ```
 
+## Live Demo
+Check out the live demo [here](https://for-pair-jealcs-projects.vercel.app/).
+
 ## 🤝 Contributing
 We welcome contributions! Please follow the steps below if you'd like to contribute to MoringaPair:
 
