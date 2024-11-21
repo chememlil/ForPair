@@ -44,7 +44,7 @@ To get started with MoringaPair locally, follow the steps below:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/chememlil/MoringaPair
+git clone https://github.com/jealc/MoringaPair.git
 cd MoringaPair
 ```
 
@@ -125,7 +125,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🔗 GitHub Repository
 You can find the code repository at:
-https://github.com/chememlil/ForPair
+https://github.com/jealc/MoringaPair.git
 
 ---
 
