@@ -44,8 +44,8 @@ To get started with MoringaPair locally, follow the steps below:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/chememlil/ForPair
-cd ForPair
+git clone https://github.com/chememlil/MoringaPair
+cd MoringaPair
 ```
 
 ### 2. Backend Setup
